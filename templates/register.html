@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register
+{% endblock %}
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Warning!</strong> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name">
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Password</label>
+            <input type="password" class="form-control" id="pwd" name="pwd">
+        </div>
+        <div class="mb-3">
+            <label for="confirm_pwd" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm_pwd" name="confirm_pwd">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="user_type" id="flexRadioDefault1" value="job_seeker">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Job Seeker
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="radio" name="user_type" id="flexRadioDefault2" value="recruiter">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Recruiter
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Account</button>
+    </form>
+{% endblock %}
