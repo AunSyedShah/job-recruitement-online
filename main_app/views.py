@@ -13,9 +13,8 @@ def sign_in(request):
         if user is not None:
             print(user.get_user_type())
         else:
-            print('User not found')
-
-        return render(request, 'login.html')
+            messages.add_message(request, messages.ERROR, 'Invalid Credentials')
+            return redirect(request.path)
     if request.method == 'GET':
         return render(request, 'login.html')
 
