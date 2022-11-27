@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from account_app.models import User
 from django.contrib import messages
+from .forms import ResumeForm
 
 
 # Create your views here.
@@ -11,7 +12,8 @@ def sign_in(request):
         password = request.POST.get('pwd')
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            print(user.get_user_type())
+            if user.is_job_seeker:
+                return redirect('resume')
         else:
             messages.add_message(request, messages.ERROR, 'Invalid Credentials')
             return redirect(request.path)
@@ -42,7 +44,10 @@ def register(request):
 
 
 def resume(request):
-    return render(request, 'resume.html')
+    context = {}
+    form = ResumeForm()
+    context['form'] = form
+    return render(request, 'resume.html', context)
 
 
 def user_logout(request):

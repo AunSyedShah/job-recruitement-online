@@ -24,7 +24,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account_app',
-    'main_app'
+    'main_app',
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -107,3 +108,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account_app.User'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
