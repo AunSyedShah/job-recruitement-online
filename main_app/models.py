@@ -20,7 +20,4 @@ class Resume(models.Model):
         (6, 'Education'),
     )
     job_sector = models.IntegerField(choices=job_sector_choices, default=1)
-    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
-
-    def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+    user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, blank=True, null=True)

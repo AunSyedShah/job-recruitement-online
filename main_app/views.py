@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from account_app.models import User
 from django.contrib import messages
 from .forms import ResumeForm
+from datetime import date
 
 
 # Create your views here.
@@ -45,6 +46,18 @@ def register(request):
 
 def resume(request):
     context = {}
+    if request.method == "POST":
+        form = ResumeForm(request.POST)
+        if form.is_valid():
+            temp = form.save()
+            date_of_birth = temp.date_of_birth
+            today = date.today()
+            age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+            print(age)
+            return redirect('resume')
+        else:
+            context['form'] = form
+            return render(request, 'resume.html', context)
     form = ResumeForm()
     context['form'] = form
     return render(request, 'resume.html', context)
