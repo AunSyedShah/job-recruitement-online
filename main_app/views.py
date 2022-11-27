@@ -39,3 +39,12 @@ def register(request):
         return render(request, 'register.html')
     if request.method == 'GET':
         return render(request, 'register.html')
+
+
+def resume(request):
+    return render(request, 'resume.html')
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('sign_in')
