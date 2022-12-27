@@ -21,3 +21,34 @@ class Resume(models.Model):
     )
     job_sector = models.IntegerField(choices=job_sector_choices, default=1)
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
+
+
+class JobPosted(models.Model):
+    job_title = models.CharField(max_length=255)
+    job_description = models.TextField()
+    job_sector_choices = (
+        (1, 'Accountancy, Banking and Finance'),
+        (2, 'Engineering and Manufacturing'),
+        (3, 'Agriculture'),
+        (4, 'Health'),
+        (5, 'Property and Construction'),
+        (6, 'Education'),
+    )
+    job_sector = models.IntegerField(choices=job_sector_choices, default=1)
+    job_type_choices = (
+        (1, 'Full Time'),
+        (2, 'Part Time'),
+        (3, 'Contract'),
+        (4, 'Internship'),
+    )
+    job_type = models.IntegerField(choices=job_type_choices, default=1)
+    job_location_choices = (
+        (1, 'Karachi'),
+        (2, 'Lahore'),
+        (3, 'Islamabad'),
+        (4, 'Peshawar'),
+        (5, 'Quetta'),
+    )
+    job_location = models.IntegerField(choices=job_location_choices, default=1)
+    job_salary = models.IntegerField(default=0)
+    job_posted_by = models.ForeignKey(User, on_delete=models.CASCADE, default=None, blank=True, null=True)

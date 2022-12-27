@@ -14,6 +14,7 @@ def sign_in(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             if user.is_job_seeker:
+                login(request, user)
                 return redirect('resume')
         else:
             messages.add_message(request, messages.ERROR, 'Invalid Credentials')
@@ -39,6 +40,7 @@ def register(request):
         elif user_type == 'recruiter':
             User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username,
                                      password=password, is_job_seeker=True)
+        messages.add_message(request, messages.SUCCESS, 'Account Created Successfully')
         return render(request, 'register.html')
     if request.method == 'GET':
         return render(request, 'register.html')
@@ -52,7 +54,8 @@ def resume(request):
             temp = form.save()
             date_of_birth = temp.date_of_birth
             today = date.today()
-            age = today.year - date_of_birth.year - ((today.month, today.day) < (date_of_birth.month, date_of_birth.day))
+            age = today.year - date_of_birth.year - (
+                    (today.month, today.day) < (date_of_birth.month, date_of_birth.day))
             print(age)
             return redirect('resume')
         else:
@@ -66,3 +69,15 @@ def resume(request):
 def user_logout(request):
     logout(request)
     return redirect('sign_in')
+
+
+def job_seeker_dashboard(request):
+    # only display this page if user is job seeker and logged in
+    if request.user.is_job_seeker and request.user.is_authenticated:
+        return render(request, 'job_seeker_dashboard.html')
+
+
+def recruiter_dashboard(request):
+    # only display this page if user is recruiter and logged in
+    if request.user.is_recruiter and request.user.is_authenticated:
+        return render(request, 'recruiter_dashboard.html')
