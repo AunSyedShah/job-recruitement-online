@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="350aa208-29ee-4b8e-ab3d-5320b4e359f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/job_seeker_dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/post_job.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/job_seeker_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/job_seeker_dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/recruiter_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/recruiter_dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +45,7 @@
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/aunsyedshah/programming/python/django/job_online/templates&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -97,7 +102,11 @@
       <workItem from="1669515806720" duration="8705000" />
       <workItem from="1669561416913" duration="301000" />
       <workItem from="1669619011980" duration="22000" />
-      <workItem from="1672107269975" duration="2589000" />
+      <workItem from="1672107269975" duration="5099000" />
+      <workItem from="1672193858410" duration="397000" />
+      <workItem from="1672467337850" duration="2868000" />
+      <workItem from="1672500927225" duration="34000" />
+      <workItem from="1673395716352" duration="3976000" />
     </task>
     <servers />
   </component>

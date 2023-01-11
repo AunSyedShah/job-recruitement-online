@@ -1,4 +1,4 @@
-from .models import Resume
+from .models import Resume, JobPosted
 from django import forms
 
 
@@ -10,3 +10,10 @@ class ResumeForm(forms.ModelForm):
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
         }
         exclude = ['user']
+
+
+class JobPostedForm(forms.ModelForm):
+    class Meta:
+        model = JobPosted
+        fields = '__all__'
+        exclude = ['job_posted_by']

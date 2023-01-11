@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block title %}
-    Dashboard
+    Post Job
 {% endblock %}
 {% block content %}
-    <!-- post job button -->
-    <a href="{% url 'post_job' %}" class="btn btn-primary">Post a Job</a>
+    <form>
+        {{ form|crispy }}
+    </form>
 {% endblock %}
