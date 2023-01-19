@@ -4,7 +4,10 @@
     Post Job
 {% endblock %}
 {% block content %}
-    <form>
+    <form method="post">
+        {% csrf_token %}
         {{ form|crispy }}
+        <!-- bootstrap submit button -->
+        <button type="submit" class="btn btn-primary my-1">Submit</button>
     </form>
 {% endblock %}

@@ -95,7 +95,25 @@ def recruiter_dashboard(request):
 def post_job(request):
     if request.user.is_recruiter and request.user.is_authenticated:
         context = {}
+        if request.method == "POST":
+            form = JobPostedForm(request.POST)
+            if form.is_valid():
+                temp = form.save()
+                temp.job_posted_by = request.user
+                form.save()
+                return redirect('recruiter_dashboard')
+            else:
+                context['form'] = form
+                return render(request, 'post_job.html', context)
         if request.method == "GET":
             context['form'] = JobPostedForm()
             return render(request, 'post_job.html', context)
         return render(request, 'post_job.html')
+
+
+def jobs_posted(request):
+    if request.user.is_recruiter and request.user.is_authenticated:
+        posted_jobs = JobPosted.objects.filter(job_posted_by=request.user)
+        context = {'jobs_posted': posted_jobs}
+        return render(request, 'jobs_posted.html', context)
+    return redirect('sign_in')

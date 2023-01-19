@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Jobs Posted
+{% endblock %}
+{% block content %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Job Title</th>
+            <th scope="col">Job Sector</th>
+            <th scope="col">Job Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs_posted %}
+            <tr>
+                <td>{{ job.job_title }}</td>
+                <td>{{ job.job_sector }}</td>
+                <td>{{ job.job_type }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

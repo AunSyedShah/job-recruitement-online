@@ -35,6 +35,9 @@
                             {% if request.user.is_job_seeker %}
                                 <li><a class="dropdown-item" href="{% url 'job_seeker_dashboard' %}">Dashboard</a></li>
                             {% endif %}
+                            {% if request.user.is_recruiter %}
+                                <li><a class="dropdown-item" href="{% url 'recruiter_dashboard' %}">Dashboard</a></li>
+                            {% endif %}
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li>
                                 <hr class="dropdown-divider">
