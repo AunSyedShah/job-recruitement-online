@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    View Candidate
+{% endblock %}
+{% block content %}
+    <form method="post" name="search_job_seeker">
+        {% csrf_token %}
+        {{ form | crispy }}
+        <!-- bootstrap submit button -->
+        <input type="submit" class="btn btn-primary my-1" value="Search Candidate">
+    </form>
+    {% if not candidates and request.method == "POST" %}
+        <h3>No Candidates Found in this category</h3>
+    {% else %}
+        <form method="post" name="job_seeker_select">
+            {% csrf_token %}
+            <!-- display candidates -->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for candidate in candidates %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'view_candidate' candidate.id %}"
+                               class="btn btn-primary">{{ candidate.user.get_full_name }} - View Profile</a>
+                            <!-- bootstrap input button -->
+                            <!-- hidden field with candidate id -->
+                            <!-- if user is already selected then change the button text -->
+                            {% if candidate.is_selected %}
+                                <input type="submit" class="btn btn-info" value="Already Selected" name="select_btn" disabled>
+                            {% else %}
+                                <input type="hidden" name="candidate_id" value="{{ candidate.id }}">
+                                <input type="submit" class="btn btn-success" value="Select" name="select_btn">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    {% endif %}
+    {% block script %}
+        <script>
+            function select_candidate(candidate_id) {
+                // using axios send JSON data to the server
+                axios.post("{% url 'select_candidate' %}", {
+                    candidate_id: candidate_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                })
+                    .then(function (response) {
+                        // if the response is success
+                        console.log(response);
+                        if (response.data.success) {
+                            // change the button text
+                            console.log(this);
+                            this.innerText = "Selected";
+                        } else {
+                            // display error message
+                            alert(response.data.message)
+                        }
+                    })
+                    .catch(function (error) {
+                        // display error message
+                        alert(error)
+                    });
+            }
+        </script>
+    {% endblock %}
+{% endblock %}

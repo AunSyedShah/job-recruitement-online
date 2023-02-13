@@ -17,3 +17,9 @@ class JobPostedForm(forms.ModelForm):
         model = JobPosted
         fields = '__all__'
         exclude = ['job_posted_by']
+
+
+class SearchCandidateForm(forms.ModelForm):
+    class Meta:
+        model = JobPosted
+        fields = ('job_sector',)

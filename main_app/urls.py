@@ -10,4 +10,7 @@ urlpatterns = [
     path('recruiter_dashboard/', views.recruiter_dashboard, name='recruiter_dashboard'),
     path('post_job/', views.post_job, name='post_job'),
     path('jobs_posted/', views.jobs_posted, name='jobs_posted'),
+    path('search_candidates/', views.search_candidates, name='search_candidates'),
+    path('view_candidate/<int:profile_id>', views.view_candidate, name='view_candidate'),
+    path('select_candidate/', views.select_candidate, name='select_candidate'),
 ]

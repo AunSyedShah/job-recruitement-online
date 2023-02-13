@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from account_app.models import User
 from django.contrib import messages
-from .forms import ResumeForm, JobPostedForm
+from .forms import ResumeForm, JobPostedForm, SearchCandidateForm
 from datetime import date
 from .models import Resume, JobPosted
+from django.http import JsonResponse
+import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -117,3 +120,54 @@ def jobs_posted(request):
         context = {'jobs_posted': posted_jobs}
         return render(request, 'jobs_posted.html', context)
     return redirect('sign_in')
+
+
+def search_candidates(request):
+    if request.user.is_recruiter and request.user.is_authenticated:
+        context = {}
+        if request.method == "POST":
+            if 'job_sector' in request.POST:
+                print(request.POST)
+                form = SearchCandidateForm(request.POST)
+                if form.is_valid():
+                    job_sector = form.cleaned_data['job_sector']
+                    candidates = Resume.objects.filter(job_sector=job_sector)
+                    context['candidates'] = candidates
+                    context['form'] = SearchCandidateForm()
+                    return render(request, 'search_candidates.html', context)
+                else:
+                    context['form'] = form
+                    return render(request, 'search_candidates.html', context)
+            if 'select_btn' in request.POST:
+                print(request.POST)
+                candidate_id = request.POST.get('candidate_id')
+                candidate = Resume.objects.get(id=candidate_id)
+                candidate.is_selected = True
+                candidate.save()
+                messages.add_message(request, messages.SUCCESS, 'Candidate Selected')
+                return redirect('search_candidates')
+        if request.method == "GET":
+            context['form'] = SearchCandidateForm()
+            return render(request, 'search_candidates.html', context)
+        return render(request, 'search_candidates.html')
+
+
+def view_candidate(request, profile_id):
+    if request.user.is_recruiter and request.user.is_authenticated:
+        candidate = Resume.objects.get(id=profile_id)
+        context = {'candidate': candidate}
+        return render(request, 'view_candidate_profile.html', context)
+    return redirect('sign_in')
+
+
+# mark candidate as selected, API request
+@csrf_exempt
+def select_candidate(request):
+    # request body to json
+    body_unicode = request.body.decode('utf-8')
+    body = json.loads(body_unicode)
+    profile_id = body['candidate_id']
+    candidate = Resume.objects.get(id=profile_id)
+    candidate.is_selected = True
+    candidate.save()
+    return JsonResponse({'success': True})

@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="350aa208-29ee-4b8e-ab3d-5320b4e359f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/jobs_posted.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/search_candidates.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/view_candidate_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7b8d3b32-1dbf-4fdc-89c4-b63e900126e9.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post_job.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post_job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +54,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -67,14 +72,15 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="job_online.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="D:\aunsyedshah\programming\python\django\job_online\venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.9 (job_online)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="" />
+      <option name="host" value="0.0.0.0" />
       <option name="additionalOptions" value="" />
       <option name="browserUrl" value="" />
       <option name="runTestServer" value="false" />
@@ -111,6 +117,15 @@
       <workItem from="1673710599172" duration="600000" />
       <workItem from="1673754794613" duration="1188000" />
       <workItem from="1674134694843" duration="508000" />
+      <workItem from="1674140095129" duration="131000" />
+      <workItem from="1674150972141" duration="84000" />
+      <workItem from="1675779206767" duration="4714000" />
+      <workItem from="1675878584437" duration="4321000" />
+      <workItem from="1675952722445" duration="2935000" />
+      <workItem from="1676037597541" duration="515000" />
+      <workItem from="1676038156443" duration="1764000" />
+      <workItem from="1676211287269" duration="7984000" />
+      <workItem from="1676252126226" duration="2391000" />
     </task>
     <servers />
   </component>

@@ -21,6 +21,8 @@ class Resume(models.Model):
     )
     job_sector = models.IntegerField(choices=job_sector_choices, default=1)
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    is_view = models.BooleanField(default=False)
+    is_selected = models.BooleanField(default=False)
 
 
 class JobPosted(models.Model):
