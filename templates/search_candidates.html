@@ -26,13 +26,60 @@
                 {% for candidate in candidates %}
                     <tr>
                         <td>
-                            <a href="{% url 'view_candidate' candidate.id %}"
-                               class="btn btn-primary">{{ candidate.user.get_full_name }} - View Profile</a>
+                            <div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ candidate.id }}">
+                                    {{ candidate.user.get_full_name }} - View Profile
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ candidate.id }}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel{{ candidate.id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5"
+                                                    id="exampleModalLabel">{{ candidate.user.get_full_name }}'s
+                                                    Profile</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <table class="table">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th scope="row">Name</th>
+                                                        <td>{{ candidate.user.get_full_name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Email</th>
+                                                        <td>{{ candidate.user.email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Experience</th>
+                                                        <td>{{ candidate.experience }} Year(s)</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                    Close
+                                                </button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- bootstrap input button -->
                             <!-- hidden field with candidate id -->
                             <!-- if user is already selected then change the button text -->
+                        </td>
+                        <td>
                             {% if candidate.is_selected %}
-                                <input type="submit" class="btn btn-info" value="Already Selected" name="select_btn" disabled>
+                                <input type="submit" class="btn btn-info" value="Already Selected" name="select_btn"
+                                       disabled>
                             {% else %}
                                 <input type="hidden" name="candidate_id" value="{{ candidate.id }}">
                                 <input type="submit" class="btn btn-success" value="Select" name="select_btn">

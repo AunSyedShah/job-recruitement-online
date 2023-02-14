@@ -143,6 +143,7 @@ def search_candidates(request):
                 candidate_id = request.POST.get('candidate_id')
                 candidate = Resume.objects.get(id=candidate_id)
                 candidate.is_selected = True
+                candidate.selected_by = request.user
                 candidate.save()
                 messages.add_message(request, messages.SUCCESS, 'Candidate Selected')
                 return redirect('search_candidates')
