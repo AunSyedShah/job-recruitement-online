@@ -6,7 +6,12 @@
 {% block content %}
     <form method="post" name="search_job_seeker">
         {% csrf_token %}
-        {{ form | crispy }}
+        <select class="form-select" aria-label="Default select example" name="selected_job">
+            <option selected>Open this select menu</option>
+            {% for job in jobs %}
+                <option value="{{ job.id }}">{{ job.job_title }}</option>
+            {% endfor %}
+        </select>
         <!-- bootstrap submit button -->
         <input type="submit" class="btn btn-primary my-1" value="Search Candidate">
     </form>

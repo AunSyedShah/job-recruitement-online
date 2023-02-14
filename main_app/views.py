@@ -126,18 +126,13 @@ def search_candidates(request):
     if request.user.is_recruiter and request.user.is_authenticated:
         context = {}
         if request.method == "POST":
-            if 'job_sector' in request.POST:
-                print(request.POST)
-                form = SearchCandidateForm(request.POST)
-                if form.is_valid():
-                    job_sector = form.cleaned_data['job_sector']
-                    candidates = Resume.objects.filter(job_sector=job_sector)
-                    context['candidates'] = candidates
-                    context['form'] = SearchCandidateForm()
-                    return render(request, 'search_candidates.html', context)
-                else:
-                    context['form'] = form
-                    return render(request, 'search_candidates.html', context)
+            if 'selected_job' in request.POST:
+                selected_job = request.POST.get('selected_job')
+                selected_job = JobPosted.objects.get(id=selected_job)
+                candidates = Resume.objects.filter(job_sector=selected_job.job_sector)
+                context["jobs"] = JobPosted.objects.filter(job_posted_by=request.user)
+                context['candidates'] = candidates
+                return render(request, 'search_candidates.html', context)
             if 'select_btn' in request.POST:
                 print(request.POST)
                 candidate_id = request.POST.get('candidate_id')
@@ -147,10 +142,8 @@ def search_candidates(request):
                 candidate.save()
                 messages.add_message(request, messages.SUCCESS, 'Candidate Selected')
                 return redirect('search_candidates')
-        if request.method == "GET":
-            context['form'] = SearchCandidateForm()
-            return render(request, 'search_candidates.html', context)
-        return render(request, 'search_candidates.html')
+        context["jobs"] = JobPosted.objects.filter(job_posted_by=request.user)
+        return render(request, 'search_candidates.html', context)
 
 
 def view_candidate(request, profile_id):

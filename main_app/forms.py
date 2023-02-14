@@ -22,4 +22,4 @@ class JobPostedForm(forms.ModelForm):
 class SearchCandidateForm(forms.ModelForm):
     class Meta:
         model = JobPosted
-        fields = ('job_sector',)
+        fields = ('job_title',)
