@@ -37,6 +37,7 @@
                                         data-bs-target="#exampleModal{{ candidate.id }}">
                                     {{ candidate.user.get_full_name }} - View Profile
                                 </button>
+                                <input type="hidden" value="{{ job_id }}" name="job_id">
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal{{ candidate.id }}" tabindex="-1"
                                      aria-labelledby="exampleModalLabel{{ candidate.id }}" aria-hidden="true">

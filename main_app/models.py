@@ -61,6 +61,7 @@ class Resume(models.Model):
                                     related_name='selected_by')
     selected_for_job = models.ForeignKey(JobPosted, on_delete=models.CASCADE, default=None, blank=True, null=True,
                                          related_name='selected_for_job')
+    selection_date = models.DateField(auto_now_add=False, blank=True, null=True)
 
     def __str__(self):
         return self.user.get_full_name()

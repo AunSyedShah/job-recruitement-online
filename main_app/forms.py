@@ -9,7 +9,7 @@ class ResumeForm(forms.ModelForm):
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
         }
-        exclude = ['user', 'is_selected', 'is_view', 'selected_by', 'selected_for_job']
+        exclude = ['user', 'is_selected', 'is_view', 'selected_by', 'selected_for_job', 'selection_date']
 
 
 class JobPostedForm(forms.ModelForm):

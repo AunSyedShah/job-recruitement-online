@@ -8,6 +8,7 @@ from .models import Resume, JobPosted
 from django.http import JsonResponse
 import json
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 
 # Create your views here.
@@ -86,7 +87,9 @@ def user_logout(request):
 def job_seeker_dashboard(request):
     # only display this page if user is job seeker and logged in
     if request.user.is_job_seeker and request.user.is_authenticated:
-        return render(request, 'job_seeker_dashboard.html')
+        user_resume = Resume.objects.get(user=request.user)
+        context = {'resume': user_resume}
+        return render(request, 'job_seeker_dashboard.html', context)
 
 
 def recruiter_dashboard(request):
@@ -131,14 +134,19 @@ def search_candidates(request):
                 selected_job = JobPosted.objects.get(id=selected_job)
                 candidates = Resume.objects.filter(job_sector=selected_job.job_sector)
                 context["jobs"] = JobPosted.objects.filter(job_posted_by=request.user)
+                context["job_id"] = selected_job.id
                 context['candidates'] = candidates
                 return render(request, 'search_candidates.html', context)
             if 'select_btn' in request.POST:
                 print(request.POST)
                 candidate_id = request.POST.get('candidate_id')
+                job_id = int(request.POST.get('job_id'))
                 candidate = Resume.objects.get(id=candidate_id)
                 candidate.is_selected = True
                 candidate.selected_by = request.user
+                candidate.selection_date = timezone.now()
+                candidate.selected_for_job = JobPosted.objects.get(id=job_id)
+                print(candidate.selected_for_job)
                 candidate.save()
                 messages.add_message(request, messages.SUCCESS, 'Candidate Selected')
                 return redirect('search_candidates')
